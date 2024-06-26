@@ -1,0 +1,30 @@
+{
+  "name": "demo2",
+  "version": "1.0.0",
+  "description": "Jquery Plugin Template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && npm run compile && npm run bundle && npm run minify && npm run copy:html",
+    "compile": "tsc",
+    "bundle": "rollup -c",
+    "clean": "rimraf dist && rimraf coverage",
+    "copy:html": "cpx src/**.html dist",
+    "minify": "uglifyjs dist/example.plugin.bundle.js --output dist/example.plugin.bundle.min.js --source-map \"filename='dist/example.plugin.bundle.min.js.map',url='example.plugin.bundle.min.js.map',content='dist/example.plugin.bundle.js.map'\""
+  },
+  "author": "Jason Tuan",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.7.1"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.30",
+    "cpx": "^1.5.0",
+    "rimraf": "^5.0.7",
+    "rollup": "^2.79.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "typescript": "^5.5.2",
+    "uglify-js": "^3.18.0"
+  }
+}
