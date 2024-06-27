@@ -5,12 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run clean && npm run compile && npm run bundle && npm run minify && npm run copy:html",
+    "build": "npm run clean && npm run compile && npm run bundle && npm run minify && npm run copy:html && npm run clean-up",
+    "build-all": "npm run clean && npm run compile && npm run bundle-all && npm run minify-all && npm run copy:html && npm run clean-up",
     "compile": "tsc",
     "bundle": "rollup -c",
+    "bundle-all": "npm run bundle-example1 && npm run bundle-example2",
+    "bundle-example1": "rollup -i publish/src/example.plugin.js -o publish/dist/example.plugin.bundle.js -f iife -m true -g jquery:jQuery",
+    "bundle-example2": "rollup -i publish/src/example2.plugin.js -o publish/dist/example2.plugin.bundle.js -f iife -m true -g jquery:jQuery",
     "clean": "rimraf dist && rimraf coverage",
+    "clean-up": "rimraf dist/interfaces",
     "copy:html": "cpx src/**.html dist",
-    "minify": "uglifyjs dist/example.plugin.bundle.js --output dist/example.plugin.bundle.min.js --source-map \"filename='dist/example.plugin.bundle.min.js.map',url='example.plugin.bundle.min.js.map',content='dist/example.plugin.bundle.js.map'\""
+    "minify": "uglifyjs publish/dist/example.plugin.bundle.js --output publish/dist/example.plugin.bundle.min.js --source-map \"filename='publish/dist/example.plugin.bundle.min.js.map',url='example.plugin.bundle.min.js.map',content='publish/dist/example.plugin.bundle.js.map'\"",
+    "minify-all": "npm run minify-example1 && npm run minify-example2",
+    "minify-example1": "uglifyjs publish/dist/example.plugin.bundle.js --output publish/dist/example.plugin.bundle.min.js --source-map \"filename='publish/dist/example.plugin.bundle.min.js.map',url='example.plugin.bundle.min.js.map',content='publish/dist/example.plugin.bundle.js.map'\"",
+    "minify-example2": "uglifyjs publish/dist/example2.plugin.bundle.js --output publish/dist/example2.plugin.bundle.min.js --source-map \"filename='publish/dist/example2.plugin.bundle.min.js.map',url='example2.plugin.bundle.min.js.map',content='publish/dist/example2.plugin.bundle.js.map'\""
   },
   "author": "Jason Tuan",
   "license": "MIT",

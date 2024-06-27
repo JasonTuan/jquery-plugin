@@ -3,12 +3,12 @@ import sourcemaps from 'rollup-plugin-sourcemaps';
 
 export default {
     // Define the JavaScript file to use as the starting point for bundling.
-    input: 'dist/example.plugin.js',
+    input: 'publish/src/example.plugin.js',
 
     // Define the output options for the generated bundle.
     output: {
         // Define the bundle file.
-        file: 'dist/example.plugin.bundle.js',
+        file: 'publish/dist/example.plugin.bundle.js',
         // Define the bundle format (self-executing function in this case).
         format: 'iife',
         // Enable generation of a separate source map file.
